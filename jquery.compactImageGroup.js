@@ -11,7 +11,7 @@ if (typeof jQuery === 'undefined') {
         }, options);
         var maxImageHeight = options.maxRowHeight - (options.imagePadding * 2);
 
-        function compactImageGroup() {
+        function execute() {
             var group = $(this),
                     images = group.find("img"),
                     amountImage = images.size(),
@@ -30,14 +30,14 @@ if (typeof jQuery === 'undefined') {
                     amountUploadedImage++;
                     if (amountImage == amountUploadedImage) {
                         setImagesRatio(false);
-                        execute();
+                        process();
                     }
                 } else {
                     $(this).load(function () {
                         amountUploadedImage++;
                         if (amountImage == amountUploadedImage) {
                             setImagesRatio(true);
-                            execute();
+                            process();
                         }
                     });
                 }
@@ -66,7 +66,7 @@ if (typeof jQuery === 'undefined') {
                 //console.log("imagesRatio=" + imagesRatio);
             }
 
-            function execute() {
+            function process() {
                 if (group.is(":hidden")) {
                     return;
                 }
@@ -121,6 +121,6 @@ if (typeof jQuery === 'undefined') {
             }
         }
 
-        return this.each(compactImageGroup);
+        return this.each(execute);
     };
 })(jQuery);
